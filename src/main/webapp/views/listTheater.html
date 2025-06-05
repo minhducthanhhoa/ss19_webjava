@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th>Tên rạp</th>
+        <th>Địa chỉ</th>
+        <th>Phòng chiếu</th>
+        <th>Trạng thái</th>
+        <th>Hành động</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="t : ${theaters}">
+        <td th:text="${t.theaterName}">Tên rạp</td>
+        <td th:text="${t.address}">Địa chỉ</td>
+        <td th:text="${t.numberScreenRoom}">Phòng chiếu</td>
+        <td th:text="${t.status} ? 'Đang hoạt động' : 'Ngừng hoạt động'">Trạng thái</td>
+        <td>
+            <a th:href="@{'/theaters/edit/' + ${t.id}}">Sửa</a> |
+            <a th:href="@{'/theaters/delete/' + ${t.id}}">Xóa</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<a th:href="@{/theaters/add}">Thêm rạp</a>
+
+</body>
+</html>

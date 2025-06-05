@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .error {
+            color: red;
+        }
+        input, select {
+            display: block;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+<h2 th:text="${movie.id == null} ? 'Thêm Phim Mới' : 'Chỉnh Sửa Phim'"></h2>
+
+<form th:action="@{${formAction}}" th:object="${movie}" method="post">
+    <label>Tên phim:</label>
+    <input type="text" th:field="*{title}" placeholder="Tên phim"/>
+    <div th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="error"></div>
+
+    <label>Đạo diễn:</label>
+    <input type="text" th:field="*{director}" placeholder="Đạo diễn"/>
+    <div th:if="${#fields.hasErrors('director')}" th:errors="*{director}" class="error"></div>
+
+    <label>Năm phát hành:</label>
+    <input type="number" th:field="*{releaseYear}" placeholder="2024"/>
+    <div th:if="${#fields.hasErrors('releaseYear')}" th:errors="*{releaseYear}" class="error"></div>
+
+    <label>Thể loại:</label>
+    <input type="text" th:field="*{genre}" placeholder="Thể loại"/>
+
+    <label>Thời lượng (phút):</label>
+    <input type="number" th:field="*{duration}" placeholder="120"/>
+    <div th:if="${#fields.hasErrors('duration')}" th:errors="*{duration}" class="error"></div>
+
+    <label>URL Poster:</label>
+    <input type="text" th:field="*{poster}" placeholder="http://..."/>
+    <div th:if="${#fields.hasErrors('poster')}" th:errors="*{poster}" class="error"></div>
+
+    <label>Ngôn ngữ:</label>
+    <input type="text" th:field="*{language}" placeholder="Ngôn ngữ"/>
+
+    <label><input type="checkbox" th:field="*{status}"/> Đang chiếu</label>
+
+    <button type="submit">Lưu</button>
+</form>
+
+</body>
+</html>

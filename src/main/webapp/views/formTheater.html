@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<form th:action="@{${formAction}}" th:object="${theater}" method="post">
+    <div>
+        Tên rạp:
+        <input type="text" th:field="*{theaterName}" placeholder="Tên rạp"/>
+        <div th:if="${#fields.hasErrors('theaterName')}" th:errors="*{theaterName}" class="error"></div>
+    </div>
+
+    <div>
+        Địa chỉ:
+        <input type="text" th:field="*{address}" placeholder="Địa chỉ"/>
+        <div th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="error"></div>
+    </div>
+
+    <div>
+        Phòng chiếu:
+        <input type="number" th:field="*{numberScreenRoom}" min="1" placeholder="Số phòng chiếu"/>
+        <div th:if="${#fields.hasErrors('numberScreenRoom')}" th:errors="*{numberScreenRoom}" class="error"></div>
+    </div>
+
+    <div>
+        <label>
+            <input type="checkbox" th:field="*{status}" /> Đang hoạt động
+        </label>
+    </div>
+
+    <div>
+        <input type="submit" value="Lưu" />
+    </div>
+</form>
+
+</body>
+</html>
